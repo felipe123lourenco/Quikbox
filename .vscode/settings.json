@@ -1,0 +1,8 @@
+{
+    "typescript.tsdk": "node_modules\\typescript\\lib",
+    "github.copilot.chat.scopeSelection": true,
+    "github.copilot.advanced": {
+        
+    },
+    "liveServer.settings.port": 5501
+}

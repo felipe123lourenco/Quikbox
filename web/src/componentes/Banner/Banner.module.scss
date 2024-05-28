@@ -1,0 +1,22 @@
+.BannerArea {
+    height: 50vh;
+    background: url("../../../../web/public/imagens/banner_entrega.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    .Container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        font-size: 1.6rem;
+    }
+
+    .Titulo {
+        text-transform: uppercase;
+        margin: 0;
+        color: aliceblue;
+    }
+}
