@@ -30,7 +30,7 @@ export class EntregadoresEntity {
   @Column({ name: 'senha', length: 150, nullable: false })
   senha: string;
 
-  @OneToMany(() => EntregadoresEntity, (entregadores) => entregadores.isbn, {
+  @OneToMany(() => EntregadoresEntity, (entregadores) => entregadores.id, {
     cascade: true,
     eager: true,
   })

@@ -68,7 +68,7 @@ const AdministracaoClientes = () => {
                             {clientes.email}
                         </TableCell>                      
                         <TableCell>
-                            [ <RouterLink to={`/admin/pratos/${clientes.id}`}>editar</RouterLink> ]
+                            [ <RouterLink to={`/clientes/${clientes.id}`}>editar</RouterLink> ]
                         </TableCell>
                         <TableCell>
                             <Button variant="outlined" color="error" onClick={() => excluir(clientes)}>

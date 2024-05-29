@@ -27,7 +27,7 @@ export class ClienteEntity {
   @Column({ name: 'email', length: 150, nullable: false })
   email: string;
 
-  @OneToMany(() => ClienteEntity, (cliente) => cliente.isbn, {
+  @OneToMany(() => ClienteEntity, (cliente) => cliente.id, {
     cascade: true,
     eager: true,
   })

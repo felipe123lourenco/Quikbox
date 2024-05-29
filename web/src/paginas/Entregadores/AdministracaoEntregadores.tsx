@@ -68,7 +68,7 @@ const AdministracaoEntregadores = () => {
                             {entregarodes.senha}
                         </TableCell>                      
                         <TableCell>
-                            [ <RouterLink to={`/admin/pratos/${entregarodes.id}`}>editar</RouterLink> ]
+                            [ <RouterLink to={`/entregadores/${entregarodes.id}`}>editar</RouterLink> ]
                         </TableCell>
                         <TableCell>
                             <Button variant="outlined" color="error" onClick={() => excluir(entregarodes)}>

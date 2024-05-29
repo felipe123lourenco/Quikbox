@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 
 @Entity({ nome: 'entregas' })
-export class AutorEntity {
+export class EntregasEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -33,7 +33,7 @@ export class AutorEntity {
   @Column({ name: 'codigo_coleta', length: 150, nullable: false })
   codigo_coleta: string;
 
-  @OneToMany(() => EntregasEntity, (entregas) => entregas.isbn, {
+  @OneToMany(() => EntregasEntity, (entregas) => entregas.id {
     cascade: true,
     eager: true,
   })
