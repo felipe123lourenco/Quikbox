@@ -5,6 +5,7 @@ import FormularioCliente from './paginas/Clientes/FormularioCliente';
 import AdministracaoClientes from './paginas/Clientes/AdministracaoClientes';
 import FormularioEntregadores from './paginas/Entregadores/FormularioEntregadores';
 import AdministracaoEntregadores from './paginas/Entregadores/FormularioEntregadores';
+import Login from './paginas/Login/Login';
 
 import FormularioEntregas from './paginas/Administracao/Entregas/FormularioEntregas';
 import AdministracaoEntregas from './paginas/Administracao/Entregas/AdministracaoEntregas';
@@ -19,6 +20,7 @@ function App() {
       <Route path="/admclientes/:id" element={<AdministracaoClientes />} />
       <Route path="/entregadores" element={<FormularioEntregadores />} />
       <Route path="/admentregadores/:id" element={<AdministracaoEntregadores />} />      
+      <Route path="/login" element={<Login />} />
       
       <Route path='/admin' element={<PaginaBaseAdmin />}>     
         <Route path="entregas/novo" element={<FormularioEntregas />} />        
