@@ -11,6 +11,8 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class CriaEntregadoresDTO {
+  id: string;
+  senha: string;
   @IsNotEmpty({ message: 'Nome deve ser informado' })
   @IsString()
   nome: string;
@@ -25,7 +27,7 @@ export class CriaEntregadoresDTO {
 
   @IsNotEmpty({ message: 'Endereço deve ser informado' })
   @IsString()
-  endereco: number;
+  endereco: string;
 
   @IsEmail(undefined, { message: 'Email inválido' })
   @EmailNotExiste({ message: 'Email já cadastrado' })

@@ -1,18 +1,18 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
-import { EntregasRepository } from '../repository/entregas_repositorio';
-import { EntregasDTO } from '../dto/entregasDTO';
+import { EntregasRepositorio } from '../repository/entregas_repositorio';
+import { CriaEntregasDTO } from '../dto/entregasDTO';
 import { CustomLogger } from 'src/modulos/logger/custom-logger.service';
 
 @Injectable()
 export class EntregasService {
   constructor(
-    private readonly entregas: EntregasRepository,
+    private readonly entregas: EntregasRepositorio,
     private readonly logger: CustomLogger,
   ) {
     this.logger.setContext('EntregasController');
   }
 
-  async cadastraEntregas(data: EntregasDTO) {
+  async cadastraEntregas(data: CriaEntregasDTO) {
     try {
       const entregasSalva = await this.entregas.salvar(data);
       const mensagem = 'Entrega adicionada com êxito';
@@ -25,11 +25,11 @@ export class EntregasService {
     return data;
   }
 
-  async listaEntregas(): Promise<EntregasDTO[]> {
-    return (await this.entregas.listarTodos()) as EntregasDTO[];
+  async listaEntregas(): Promise<CriaEntregasDTO[]> {
+    return (await this.entregas.listarTodos()) as CriaEntregasDTO[];
   }
 
   async removeEntregas(data: string) {
-    return await this.entregas.remover(data);
+    return await this.removeEntregas(data);
   }
 }

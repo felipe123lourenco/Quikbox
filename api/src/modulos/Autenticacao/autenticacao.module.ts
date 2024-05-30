@@ -5,6 +5,7 @@ import { ConfigService } from '@nestjs/config';
 import { UsuarioModule } from '../usuario/usuario.module';
 import { AutenticacaoService } from './autenticacao.service';
 import { AutenticaDTO } from './dto/autentica.dto';
+import { UsuarioService } from '../usuario/service/usuario.service';
 
 @Module({
   imports: [
@@ -21,6 +22,6 @@ import { AutenticaDTO } from './dto/autentica.dto';
     }),
   ],
   controllers: [AutenticacaoController],
-  providers: [AutenticaDTO, AutenticacaoService],
+  providers: [AutenticaDTO, AutenticacaoService, UsuarioService],
 })
 export class AutenticacaoModule {}

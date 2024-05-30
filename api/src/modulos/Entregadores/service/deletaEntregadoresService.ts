@@ -13,7 +13,7 @@ export class DeletaEntregadoresService {
 
   async deletaCliente(id: string) {
     try {
-      await this.entregadoresRepositorio.deletaentregadores(id);
+      await this.entregadoresRepositorio.deletaEntregadores(id);
       this.logger.logObjeto(HttpStatus.OK, 'Entregador excluido', id);
       return id;
     } catch (ex) {

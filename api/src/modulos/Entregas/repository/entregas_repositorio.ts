@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { EntregasEntity } from '../entity/entregas.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { AtualizaEntregasDTO } from '../dto/entregasDTO';
+import { AtualizaEntregasDTO, CriaEntregasDTO } from '../dto/entregasDTO';
 
 @Injectable()
 export class EntregasRepositorio {
@@ -11,7 +11,7 @@ export class EntregasRepositorio {
     private readonly entregasRepository: Repository<EntregasEntity>,
   ) {}
 
-  async salvar(novoEntregas: EntregasEntity) {
+  async salvar(novoEntregas: EntregasEntity|CriaEntregasDTO) {
     await this.entregasRepository.save(novoEntregas);
   }
 
@@ -20,14 +20,9 @@ export class EntregasRepositorio {
   }
 
   async listarEntregas(id: string) {
-    const cliente = await this.entregasRepository.find({
-      where: { id: id },
-      relations: { entregas: true },
+    const entregas = await this.entregasRepository.find({
+      where: { id: id }
     });
-
-    if (entregas === null) {
-      new NotFoundException('Entrega não localizado');
-    }
 
     return entregas;
   }
@@ -47,13 +42,6 @@ export class EntregasRepositorio {
     Object.assign(entregas, dto as EntregasEntity);
 
     return this.entregasRepository.save(entregas);
-  }
-
-  async validaEmailExistente(email: string): Promise<boolean> {
-    const emailLocalizado = await this.entregasRepository.findOne({
-      where: { email },
-    });
-    return !!emailLocalizado;
   }
 
   async validaEntregasPeloNome(nome: string): Promise<boolean> {

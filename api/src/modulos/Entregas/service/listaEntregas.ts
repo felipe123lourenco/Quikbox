@@ -13,6 +13,6 @@ export class ListarEntregasService {
   }
 
   async listarEntregas(): Promise<EntregasEntity[]> {
-    return await this.EntregasRepositorio.listarTodos();
+    return await this.entregasRepositorio.listarTodos();
   } 
 }

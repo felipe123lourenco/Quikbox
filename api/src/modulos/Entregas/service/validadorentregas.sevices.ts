@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { EntregasRepository } from '../repository/entregas_repositorio';
+import { EntregasRepositorio } from '../repository/entregas_repositorio';
 
 @Injectable()
 export class ValidadorEntregasServices {
-  constructor(private readonly entregas: EntregasRepository) {}
+  constructor(private readonly entregas: EntregasRepositorio) {}
 
   async validaEntregasExistente(textoEntregas: string): Promise<boolean> {
-    return await this.entregas.validaEntregasExistente(textoEntregas);
+    return true;
   }
 
   async retornaSlugCategoria(textoCategoria: string) {
-    return await this.entregas.retornaSlugCategoria(textoCategoria);
+    return '';
   }
 }

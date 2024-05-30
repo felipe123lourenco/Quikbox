@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { ClienteEntity } from '../entity/cliente.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { AtualizaClienteDTO } from '../dto/Cliente';
+import { AtualizaClienteDTO, CriaClienteDTO } from '../dto/Cliente';
 
 @Injectable()
 export class ClienteRepositorio {
@@ -11,8 +11,8 @@ export class ClienteRepositorio {
     private readonly clienteRepository: Repository<ClienteEntity>,
   ) {}
 
-  async salvar(novoCliente: ClienteEntity) {
-    await this.clienteRepository.save(novoCliente);
+  async salvar(cliente: CriaClienteDTO) {
+    await this.clienteRepository.save(cliente);
   }
 
   async listarTodos() {
@@ -21,8 +21,7 @@ export class ClienteRepositorio {
 
   async listarCliente(id: string) {
     const cliente = await this.clienteRepository.find({
-      where: { id: id },
-      relations: { cliente: true },
+      where: { id: id }
     });
 
     if (cliente === null) {

@@ -1,4 +1,3 @@
-import { EntregadoresEntity } from '../../Entregadores/entity/Entregadores';
 import {
   Column,
   CreateDateColumn,
@@ -7,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-@Entity({ nome: 'entregadores' })
+@Entity({ name: 'entregadores' })
 export class EntregadoresEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -29,11 +28,4 @@ export class EntregadoresEntity {
 
   @Column({ name: 'senha', length: 150, nullable: false })
   senha: string;
-
-  @OneToMany(() => EntregadoresEntity, (entregadores) => entregadores.id, {
-    cascade: true,
-    eager: true,
-  })
-
-  cliente: EntregadoresEntity[];
 }

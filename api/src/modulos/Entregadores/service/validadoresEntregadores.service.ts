@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { EntregadoresRepositorio } from '../repository/entregadores_repositorio';
 
 @Injectable()
-export class ValidarClienteService {
+export class ValidarEntregadoresService {
   constructor(private readonly autor: EntregadoresRepositorio) {}
 
   async validaEmailExistente(email: string): Promise<boolean> {

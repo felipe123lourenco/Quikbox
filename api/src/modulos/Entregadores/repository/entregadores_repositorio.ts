@@ -22,7 +22,6 @@ export class EntregadoresRepositorio {
   async listarEntregadores(id: string) {
     const entregadores = await this.entregadoresRepository.find({
       where: { id: id },
-      relations: { entregadores: true },
     });
 
     if (entregadores === null) {

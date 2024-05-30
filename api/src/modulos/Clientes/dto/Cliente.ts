@@ -21,7 +21,9 @@ export class CriaClienteDTO {
 
   @IsNotEmpty({ message: 'Endereço ser informado' })
   @IsString()
-  endereço: string;
+  endereco: string;
+
+  coordenadas: string;
 
   @IsEmail(undefined, { message: 'Email inválido' })
   @EmailNotExiste({ message: 'Email já cadastrado' })

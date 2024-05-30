@@ -7,7 +7,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PostgresConfigService } from './config/postgres.config.service';
 
-import { ClientesModule } from './modulos/Clientes/cliente.module';
+import { ClienteModule } from './modulos/Clientes/cliente.module';
 import { EntregadoresModule } from './modulos/Entregadores/entregadores.module';
 import { EntregasModule } from './modulos/Entregas/entregas.module';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
@@ -18,10 +18,11 @@ import { redisStore } from 'cache-manager-redis-yet';
 import { LoggerGlobalInterceptor } from './recursos/interceptores/logger-global.interceptor';
 import { CustomLogger } from './modulos/logger/custom-logger.service';
 import { CustomLoggerModule } from './modulos/logger/logger.module';
+import { UsuarioModule } from './modulos/usuario/usuario.module';
 
 @Module({
   imports: [
-    ClientesModule,
+    ClienteModule,
     EntregadoresModule,
     EntregasModule,    
     ConfigModule.forRoot({
@@ -39,6 +40,7 @@ import { CustomLoggerModule } from './modulos/logger/logger.module';
     }),
     AutenticacaoModule,
     CustomLoggerModule,
+    UsuarioModule,
   ],
   providers: [
     {

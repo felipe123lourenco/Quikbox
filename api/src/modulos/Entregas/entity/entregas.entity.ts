@@ -1,4 +1,3 @@
-import { EntregasEntity } from '../../Entregas/entity/Entregas';
 import {
   Column,
   CreateDateColumn,
@@ -7,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-@Entity({ nome: 'entregas' })
+@Entity({ name: 'entregas' })
 export class EntregasEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -33,10 +32,4 @@ export class EntregasEntity {
   @Column({ name: 'codigo_coleta', length: 150, nullable: false })
   codigo_coleta: string;
 
-  @OneToMany(() => EntregasEntity, (entregas) => entregas.id {
-    cascade: true,
-    eager: true,
-  })
-
-  entregas: EntregasEntity[];
 }

@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 
 import { CriarEntregasService } from '../service/criarEntregasService';
-import { AtualizaEntregasDTO, CriaEntregasDTO } from '../dto/Entregas';
+import { AtualizaEntregasDTO, CriaEntregasDTO } from '../dto/entregasDTO';
 import { ListarEntregasService } from '../service/listaEntregas';
 import { AutenticacaoGuard } from '../../Autenticacao/autenticacao.guard';
 

@@ -13,17 +13,9 @@ export class CriarClienteService {
     this.logger.setContext('ClienteController');
   }
 
-  async cadastraCliente(data: CriaClienteDTO): Promise<ClienteEntity> {
-    const clienteEntity = new ClienteEntity();
-
-    Object.assign(clienteEntity, data as ClienteEntity);
-
-    try {
-      await this.clienteRepositorio.salvar(clienteEntity);
-      this.logger.logObjeto(HttpStatus.OK, 'Cliente criado', clienteEntity);
-    } catch (ex) {
-      this.logger.logObjeto(ex.status, ex.message, clienteEntity);
-    }
-    return clienteEntity;
+  async cadastraCliente(data: CriaClienteDTO) {
+     const retorno = await this.clienteRepositorio.salvar(data);
+      this.logger.logObjeto(HttpStatus.OK, 'Cliente criado', data);
+    return retorno;
   }
 }

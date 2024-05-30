@@ -1,4 +1,3 @@
-import { ClienteEntity } from '../entity/Cliente';
 import {
   Column,
   CreateDateColumn,
@@ -7,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-@Entity({ nome: 'clientes' })
+@Entity({ name: 'clientes' })
 export class ClienteEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -27,10 +26,5 @@ export class ClienteEntity {
   @Column({ name: 'email', length: 150, nullable: false })
   email: string;
 
-  @OneToMany(() => ClienteEntity, (cliente) => cliente.id, {
-    cascade: true,
-    eager: true,
-  })
 
-  cliente: ClienteEntity[];
 }
