@@ -7,6 +7,7 @@ import NavBar from '../../../componentes/NavBar';
 import Banner from '../../../componentes/Banner';
 import Rodape from '../../../componentes/Rodape';
 
+
 const FormularioEntregas = () => {
 
     const [endereco, setEndereco] = useState('')
@@ -55,6 +56,7 @@ const FormularioEntregas = () => {
                 alert('Entrega cadastrada com sucesso!')
             })
             .catch(erro => console.log(erro))
+
     }
 
     return (    
@@ -114,17 +116,10 @@ const FormularioEntregas = () => {
                     variant="standard"
                     fullWidth
                     required
-                    margin="dense"
-                />
-                <TextField
-                    value={status}
-                    onChange={evento => setStatus(evento.target.value)}
-                    label="Status"
-                    variant="standard"
-                    fullWidth
-                    required
-                    margin="dense"
-                />
+                    margin="dense"  
+                    type="number"                  
+                />              
+
                  <TextField
                     value={codigo_confirmacao}
                     onChange={evento => setCodigoConfirmacao(evento.target.value)}

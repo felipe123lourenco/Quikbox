@@ -70,6 +70,7 @@ const FormularioEntregadores = () => {
                     fullWidth
                     required
                     margin="dense"
+                    type="number"
                 />
                 <TextField
                     value={endereco}
