@@ -10,8 +10,10 @@ import Rodape from '../../../componentes/Rodape';
 const FormularioEntregas = () => {
 
     const [endereco, setEndereco] = useState('')
-    const [geolocalizacao, setGeolocalizacao] = useState('')   
-    const [dimensoes, setDimensoes] = useState('') 
+    const [latitude, setLatitude] = useState('')   
+    const [longitude, setLongitude] = useState('')   
+    const [altura, setAltura] = useState('') 
+    const [largura, setLargura] = useState('') 
     const [peso, setPeso] = useState('')  
     const [status, setStatus] = useState('')     
     const [codigo_confirmacao, setCodigoConfirmacao] = useState('')   
@@ -23,8 +25,10 @@ const FormularioEntregas = () => {
         const formData = new FormData();
 
         formData.append('endereco', endereco)
-        formData.append('geolocalizacao', geolocalizacao)
-        formData.append('dimensoes', dimensoes)
+        formData.append('latitude', latitude)
+        formData.append('longitude', longitude)
+        formData.append('altura', altura)
+        formData.append('largura', largura)
         formData.append('peso', peso)
         formData.append('status', status)
         formData.append('codigo_confirmacao', codigo_confirmacao)
@@ -40,8 +44,10 @@ const FormularioEntregas = () => {
         })
             .then(() => {
                 setEndereco('')
-                setGeolocalizacao('')
-                setDimensoes('')                
+                setLatitude('')
+                setLongitude('')  
+                setAltura('') 
+                setLargura('') 
                 setPeso('')
                 setStatus('')
                 setCodigoConfirmacao('')
@@ -66,18 +72,36 @@ const FormularioEntregas = () => {
                     margin="dense"
                 />
                 <TextField
-                    value={geolocalizacao}
-                    onChange={evento => setGeolocalizacao(evento.target.value)}
-                    label="Geolocalização"
+                    value={latitude}
+                    onChange={evento => setLatitude(evento.target.value)}
+                    label="Latitude"
                     variant="standard"
                     fullWidth
                     required
                     margin="dense"
                 />
                 <TextField
-                    value={endereco}
-                    onChange={evento => setDimensoes(evento.target.value)}
-                    label="Dimensões"
+                    value={longitude}
+                    onChange={evento => setLongitude(evento.target.value)}
+                    label="Longitude"
+                    variant="standard"
+                    fullWidth
+                    required
+                    margin="dense"
+                />
+                <TextField
+                    value={altura}
+                    onChange={evento => setAltura(evento.target.value)}
+                    label="Altura"
+                    variant="standard"
+                    fullWidth
+                    required
+                    margin="dense"
+                />
+                 <TextField
+                    value={largura}
+                    onChange={evento => setLargura(evento.target.value)}
+                    label="Largura"
                     variant="standard"
                     fullWidth
                     required

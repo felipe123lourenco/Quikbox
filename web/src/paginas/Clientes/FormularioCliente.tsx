@@ -12,7 +12,8 @@ const FormularioClientes = () => {
     const [nomeCliente, setNomeCliente] = useState('')
     const [cnpj, setCnpj] = useState('')   
     const [endereco, setEndereco] = useState('') 
-    const [coordenadas, setCoordenadas] = useState('')  
+    const [latitude, setLatitude] = useState('')   
+    const [longitude, setLongitude] = useState('')   
     const [email, setEmail] = useState('')     
 
      const aoSubmeterForm = (evento: React.FormEvent<HTMLFormElement>) => {
@@ -23,7 +24,8 @@ const FormularioClientes = () => {
         formData.append('nome', nomeCliente)
         formData.append('cnpj', cnpj)
         formData.append('endereco', endereco)
-        formData.append('coordenadas', coordenadas)
+        formData.append('latitude', latitude)
+        formData.append('longitude', longitude)
         formData.append('email', email)
      
         http.request({
@@ -38,7 +40,8 @@ const FormularioClientes = () => {
                 setNomeCliente('')
                 setCnpj('')
                 setEndereco('')
-                setCoordenadas('')
+                setLatitude('')
+                setLongitude('')  
                 setEmail('')
                 alert('Ciente cadastrado com sucesso!')
             })
@@ -81,9 +84,18 @@ const FormularioClientes = () => {
                     margin="dense"
                 />
                   <TextField
-                    value={coordenadas}
-                    onChange={evento => setCoordenadas(evento.target.value)}
-                    label="Coordenadas do Cliente"
+                    value={latitude}
+                    onChange={evento => setLatitude(evento.target.value)}
+                    label="Latitude"
+                    variant="standard"
+                    fullWidth
+                    required
+                    margin="dense"
+                />
+                <TextField
+                    value={longitude}
+                    onChange={evento => setLongitude(evento.target.value)}
+                    label="Longitude"
                     variant="standard"
                     fullWidth
                     required

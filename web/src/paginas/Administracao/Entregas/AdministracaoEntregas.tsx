@@ -31,10 +31,16 @@ const AdministracaoEntregas = () => {
                             Endereço
                         </TableCell>
                         <TableCell>
-                            Geolocalizacao
+                            Latitude
                         </TableCell>
                         <TableCell>
-                            Dimensoes
+                            Longitude
+                        </TableCell>
+                        <TableCell>
+                            Largura
+                        </TableCell>
+                        <TableCell>
+                            Altura
                         </TableCell>
                         <TableCell>
                             Peso
@@ -56,10 +62,16 @@ const AdministracaoEntregas = () => {
                             {entregas.endereco}
                         </TableCell>
                         <TableCell>
-                            {entregas.geolocalizacao}
+                            {entregas.latitude}
                         </TableCell>
                         <TableCell>
-                            {entregas.dimensoes}
+                            {entregas.longitude}
+                        </TableCell>
+                        <TableCell>
+                            {entregas.altura}
+                        </TableCell>
+                        <TableCell>
+                            {entregas.largura}
                         </TableCell>
                         <TableCell>
                             {entregas.peso}

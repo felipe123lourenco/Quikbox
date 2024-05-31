@@ -37,7 +37,10 @@ const AdministracaoClientes = () => {
                             Endereço
                         </TableCell>
                         <TableCell>
-                            Coordenadas
+                            Latitude
+                        </TableCell>
+                        <TableCell>
+                            Longitude
                         </TableCell>
                         <TableCell>
                             e-mail
@@ -62,8 +65,11 @@ const AdministracaoClientes = () => {
                             {clientes.endereco}
                         </TableCell>
                         <TableCell>
-                            {clientes.coordenadas}
-                        </TableCell> 
+                            {clientes.latitude}
+                        </TableCell>
+                        <TableCell>
+                            {clientes.longitude}
+                        </TableCell>
                         <TableCell>
                             {clientes.email}
                         </TableCell>                      

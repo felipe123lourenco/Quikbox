@@ -19,11 +19,17 @@ export class CriaClienteDTO {
   @IsString()
   cnpj: number;
 
-  @IsNotEmpty({ message: 'Endereço ser informado' })
+  @IsNotEmpty({ message: 'Endereço deve ser informado' })
   @IsString()
   endereco: string;
 
-  coordenadas: string;
+  @IsNotEmpty({ message: 'Latitude deve ser informado' })
+  @IsString()
+  latitude: string;
+
+  @IsNotEmpty({ message: 'Longitude deve ser informado' })
+  @IsString()
+  longitude: string;
 
   @IsEmail(undefined, { message: 'Email inválido' })
   @EmailNotExiste({ message: 'Email já cadastrado' })

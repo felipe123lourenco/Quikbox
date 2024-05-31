@@ -20,8 +20,11 @@ export class ClienteEntity {
   @Column({ name: 'endereco', length: 1000, nullable: false })
   endereco: string;
 
-  @Column({ name: 'coordenadas', length: 1000, nullable: false })
-  coordenadas: string;
+  @Column({ name: 'latitude', length: 1000, nullable: false })
+  latitude: string;
+
+  @Column({ name: 'longitude', length: 1000, nullable: false })
+  longitude: string;
 
   @Column({ name: 'email', length: 150, nullable: false })
   email: string;

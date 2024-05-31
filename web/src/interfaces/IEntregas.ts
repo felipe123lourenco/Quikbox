@@ -1,8 +1,10 @@
 export default interface IEntregas {
     id: number
     endereco: string
-    geolocalizacao: string
-    dimensoes: string
+    latitude: string
+    longitude: string
+    altura: string
+    largura: string
     peso: number
     status: string
     codigo_confirmacao: string
