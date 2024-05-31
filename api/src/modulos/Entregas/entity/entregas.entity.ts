@@ -14,11 +14,17 @@ export class EntregasEntity {
   @Column({ name: 'endereco', length: 1000, nullable: false })
   endereco: string;
 
-  @Column({ name: 'geolocalizacao', length: 100, nullable: false })
-  geolocalizacao: string;
+  @Column({ name: 'latitude', length: 1000, nullable: false })
+  latitude: string;
 
-  @Column({ name: 'dimensoes', length: 1000, nullable: false })
-  dimensoes: number;
+  @Column({ name: 'longitude', length: 1000, nullable: false })
+  longitude: string;
+
+  @Column({ name: 'altura', length: 1000, nullable: false })
+  altura: number;
+  
+  @Column({ name: 'largura', length: 1000, nullable: false })
+  largura: number;
 
   @Column({ name: 'peso', length: 150, nullable: false })
   peso: number;
