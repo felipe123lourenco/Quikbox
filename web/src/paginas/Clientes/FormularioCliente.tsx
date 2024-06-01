@@ -71,6 +71,7 @@ const FormularioClientes = () => {
                     fullWidth
                     required
                     margin="dense"
+                    onChange={evento => setNomeCliente(evento.target.value)}
                 />
                 <TextField
                     value={cnpj}                    
@@ -79,7 +80,8 @@ const FormularioClientes = () => {
                     fullWidth
                     required
                     margin="dense"  
-                    name="cnpj"                  
+                    name="cnpj" 
+                    onChange={evento => setCnpj(evento.target.value)}                 
                 />
                 <TextField
                     value={endereco}                    
@@ -89,6 +91,7 @@ const FormularioClientes = () => {
                     required
                     margin="dense"
                     name="endereco"
+                    onChange={evento => setEndereco(evento.target.value)}                 
                 />
                   <TextField
                     value={latitude}                    
@@ -98,6 +101,7 @@ const FormularioClientes = () => {
                     required
                     margin="dense"
                     name="latitude"
+                    onChange={evento => setLatitude(evento.target.value)}                 
                 />
                 <TextField
                     value={longitude}                    
@@ -107,6 +111,7 @@ const FormularioClientes = () => {
                     required
                     margin="dense"
                     name="longitude"
+                    onChange={evento => setLongitude(evento.target.value)} 
                 />
                 <TextField
                     value={email}                    
@@ -116,6 +121,7 @@ const FormularioClientes = () => {
                     required
                     margin="dense"
                     name="email"
+                    onChange={evento => setEmail(evento.target.value)} 
                 />                              
 
                 <Button sx={{ marginTop: 1 }} type="submit" fullWidth variant="outlined">Salvar</Button>

@@ -70,6 +70,7 @@ const FormularioEntregadores = () => {
                     required
                     margin="dense"
                     name="nome"
+                    onChange={evento => setNomeEntregador(evento.target.value)}   
                 />
                 <TextField
                     value={cnh}                    
@@ -80,6 +81,7 @@ const FormularioEntregadores = () => {
                     margin="dense"
                     name="cnh"
                     type="number"
+                    onChange={evento => setCnh(evento.target.value)}   
                 />
                 <TextField
                     value={endereco}                    
@@ -89,6 +91,7 @@ const FormularioEntregadores = () => {
                     required
                     margin="dense"
                     name="endereco"
+                    onChange={evento => setEndereco(evento.target.value)}   
                 />
                 <TextField
                     value={email}                    
@@ -98,6 +101,7 @@ const FormularioEntregadores = () => {
                     required
                     margin="dense"
                     name="email"
+                    onChange={evento => setEmail(evento.target.value)}   
                 />  
 
                  <TextField
@@ -108,6 +112,7 @@ const FormularioEntregadores = () => {
                     required
                     margin="dense"
                     name="senha"
+                    onChange={evento => setSenha(evento.target.value)}  
                 />                                   
 
                 <Button sx={{ marginTop: 1 }} type="submit" fullWidth variant="outlined">Salvar</Button>

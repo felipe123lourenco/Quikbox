@@ -76,6 +76,7 @@ const FormularioEntregas = () => {
                     required
                     margin="dense"
                     name="endereco"
+                    onChange={evento => setEndereco(evento.target.value)} 
                 />
                 <TextField
                     value={latitude}                    
@@ -85,6 +86,7 @@ const FormularioEntregas = () => {
                     required
                     margin="dense"
                     name="latitude"
+                    onChange={evento => setLatitude(evento.target.value)} 
                 />
                 <TextField
                     value={longitude}                    
@@ -94,6 +96,7 @@ const FormularioEntregas = () => {
                     required
                     margin="dense"
                     name="longitude"
+                    onChange={evento => setLongitude(evento.target.value)} 
                 />
                 <TextField
                     value={altura}                    
@@ -103,6 +106,7 @@ const FormularioEntregas = () => {
                     required
                     margin="dense"
                     name="altura"
+                    onChange={evento => setAltura(evento.target.value)} 
                 />
                  <TextField
                     value={largura}                    
@@ -112,6 +116,7 @@ const FormularioEntregas = () => {
                     required
                     margin="dense"
                     name="largura"
+                    onChange={evento => setLargura(evento.target.value)} 
                 />
                   <TextField
                     value={peso}                    
@@ -121,7 +126,8 @@ const FormularioEntregas = () => {
                     required
                     margin="dense"  
                     type="number" 
-                    name="peso"                 
+                    name="peso"      
+                    onChange={evento => setPeso(evento.target.value)}            
                 />              
 
                  <TextField
@@ -132,6 +138,7 @@ const FormularioEntregas = () => {
                     required
                     margin="dense"
                     name="codigo_confirmacao"
+                    onChange={evento => setCodigoConfirmacao(evento.target.value)}            
                 /> 
                    <TextField
                     value={codigo_coleta}                    
@@ -141,6 +148,7 @@ const FormularioEntregas = () => {
                     required
                     margin="dense"
                     name="codigo_coleta"
+                    onChange={evento => setCodigoColeta(evento.target.value)}            
                 />                                
 
                 <Button sx={{ marginTop: 1 }} type="submit" fullWidth variant="outlined">Salvar</Button>
