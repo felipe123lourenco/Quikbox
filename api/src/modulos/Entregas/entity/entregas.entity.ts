@@ -20,13 +20,13 @@ export class EntregasEntity {
   @Column({ name: 'longitude', length: 1000, nullable: false })
   longitude: string;
 
-  @Column({ name: 'altura', length: 1000, nullable: false })
+  @Column({ name: 'altura', nullable: false })
   altura: number;
   
-  @Column({ name: 'largura', length: 1000, nullable: false })
+  @Column({ name: 'largura', nullable: false })
   largura: number;
 
-  @Column({ name: 'peso', length: 150, nullable: false })
+  @Column({ name: 'peso', nullable: false })
   peso: number;
 
   @Column({ name: 'status', length: 150, nullable: false })

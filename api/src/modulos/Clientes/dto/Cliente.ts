@@ -17,7 +17,7 @@ export class CriaClienteDTO {
 
   @IsNotEmpty({ message: 'CNPJ deve ser informado' })
   @IsString()
-  cnpj: number;
+  cnpj: string;
 
   @IsNotEmpty({ message: 'Endereço deve ser informado' })
   @IsString()

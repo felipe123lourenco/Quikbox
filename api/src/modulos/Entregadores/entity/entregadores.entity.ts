@@ -14,11 +14,11 @@ export class EntregadoresEntity {
   @Column({ name: 'nome', length: 100, nullable: false })
   nome: string;
 
-  @Column({ name: 'cpf', length: 100, nullable: false })
-  cpf: number;
+  @Column({ name: 'cpf', length: 11, nullable: false })
+  cpf: string;
 
-  @Column({ name: 'cnh', length: 100, nullable: false })
-  cnh: number;
+  @Column({ name: 'cnh', length: 20, nullable: false })
+  cnh: string;
 
   @Column({ name: 'endereco', length: 1000, nullable: false })
   endereco: string;

@@ -3,10 +3,6 @@ import { useEffect, useState } from "react"
 import http from "../../../http"
 import IEntregas from "../../../interfaces/IEntregas"
 import React from 'react';
-import NavBar from '../../../componentes/NavBar';
-import Banner from '../../../componentes/Banner';
-import Rodape from '../../../componentes/Rodape';
-
 
 const FormularioEntregas = () => {
 
@@ -23,25 +19,34 @@ const FormularioEntregas = () => {
      const aoSubmeterForm = (evento: React.FormEvent<HTMLFormElement>) => {
         evento.preventDefault()
 
+        const form = evento.currentTarget;
         const formData = new FormData();
+        const data: any = {};
 
-        formData.append('endereco', endereco)
-        formData.append('latitude', latitude)
-        formData.append('longitude', longitude)
-        formData.append('altura', altura)
-        formData.append('largura', largura)
-        formData.append('peso', peso)
-        formData.append('status', status)
-        formData.append('codigo_confirmacao', codigo_confirmacao)
-        formData.append('codigo_coleta', codigo_coleta)
+        const inputs: NodeListOf<HTMLInputElement> = form.querySelectorAll('input');
+
+        inputs.forEach(e => {
+            formData.append(e.name, e.value)
+            data[e.name] = e.value.toString();
+        });
+
+        //formData.append('endereco', endereco)
+        //formData.append('latitude', latitude)
+        //formData.append('longitude', longitude)
+        //formData.append('altura', altura)
+        //formData.append('largura', largura)
+        //formData.append('peso', peso)
+        //formData.append('status', status)
+        //formData.append('codigo_confirmacao', codigo_confirmacao)
+        //formData.append('codigo_coleta', codigo_coleta)
      
         http.request({
-            url: 'entregas/',
+            url: 'http://localhost:3000/entregas/criar',
             method: 'POST',
             headers: {
-                'Content-Type': 'multipart/form-data'
+                'Content-Type': 'application/json'
             },
-            data: formData
+            data: JSON.stringify(data)
         })
             .then(() => {
                 setEndereco('')
@@ -56,7 +61,6 @@ const FormularioEntregas = () => {
                 alert('Entrega cadastrada com sucesso!')
             })
             .catch(erro => console.log(erro))
-
     }
 
     return (    
@@ -65,78 +69,78 @@ const FormularioEntregas = () => {
             <Typography component="h1" variant="h6">Formulário de Entregas</Typography>
             <Box component="form" sx={{ width: '100%' }} onSubmit={aoSubmeterForm}>
                 <TextField
-                    value={endereco}
-                    onChange={evento => setEndereco(evento.target.value)}
+                    value={endereco}                   
                     label="Endereço"
                     variant="standard"
                     fullWidth
                     required
                     margin="dense"
+                    name="endereco"
                 />
                 <TextField
-                    value={latitude}
-                    onChange={evento => setLatitude(evento.target.value)}
+                    value={latitude}                    
                     label="Latitude"
                     variant="standard"
                     fullWidth
                     required
                     margin="dense"
+                    name="latitude"
                 />
                 <TextField
-                    value={longitude}
-                    onChange={evento => setLongitude(evento.target.value)}
+                    value={longitude}                    
                     label="Longitude"
                     variant="standard"
                     fullWidth
                     required
                     margin="dense"
+                    name="longitude"
                 />
                 <TextField
-                    value={altura}
-                    onChange={evento => setAltura(evento.target.value)}
+                    value={altura}                    
                     label="Altura"
                     variant="standard"
                     fullWidth
                     required
                     margin="dense"
+                    name="altura"
                 />
                  <TextField
-                    value={largura}
-                    onChange={evento => setLargura(evento.target.value)}
+                    value={largura}                    
                     label="Largura"
                     variant="standard"
                     fullWidth
                     required
                     margin="dense"
+                    name="largura"
                 />
                   <TextField
-                    value={peso}
-                    onChange={evento => setPeso(evento.target.value)}
+                    value={peso}                    
                     label="Peso"
                     variant="standard"
                     fullWidth
                     required
                     margin="dense"  
-                    type="number"                  
+                    type="number" 
+                    name="peso"                 
                 />              
 
                  <TextField
-                    value={codigo_confirmacao}
-                    onChange={evento => setCodigoConfirmacao(evento.target.value)}
+                    value={codigo_confirmacao}                    
                     label="Codigo de Confirmação"
                     variant="standard"
                     fullWidth
                     required
                     margin="dense"
+                    name="codigo_confirmacao"
                 /> 
                    <TextField
-                    value={codigo_coleta}
-                    onChange={evento => setCodigoColeta(evento.target.value)}
+                    value={codigo_coleta}                    
                     label="Codigo de Coleta"
                     variant="standard"
                     fullWidth
                     required
                     margin="dense"
+                    name="codigo_coleta"
                 />                                
 
                 <Button sx={{ marginTop: 1 }} type="submit" fullWidth variant="outlined">Salvar</Button>

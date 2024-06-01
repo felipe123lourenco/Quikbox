@@ -16,6 +16,7 @@ export class CriarEntregadoresService {
   async cadastraEntregadores(data: CriaEntregadoresDTO): Promise<EntregadoresEntity> {
     const entregadoresEntity = new EntregadoresEntity();
 
+
     Object.assign(entregadoresEntity, data as EntregadoresEntity);
 
     try {

@@ -19,22 +19,31 @@ const FormularioClientes = () => {
      const aoSubmeterForm = (evento: React.FormEvent<HTMLFormElement>) => {
         evento.preventDefault()
 
+        const form = evento.currentTarget;
         const formData = new FormData();
+        const data: any = {};
 
-        formData.append('nome', nomeCliente)
-        formData.append('cnpj', cnpj)
-        formData.append('endereco', endereco)
-        formData.append('latitude', latitude)
-        formData.append('longitude', longitude)
-        formData.append('email', email)
+        const inputs: NodeListOf<HTMLInputElement> = form.querySelectorAll('input');
+
+        inputs.forEach(e => {
+            formData.append(e.name, e.value)
+            data[e.name] = e.value.toString();
+        });
+
+        //formData.append('nome', nomeCliente)
+        //formData.append('cnpj', cnpj)
+        //formData.append('endereco', endereco)
+        //formData.append('latitude', latitude)
+        //formData.append('longitude', longitude)
+        //formData.append('email', email)
      
         http.request({
-            url: 'clientes/',
+            url: 'http://localhost:3000/clientes/criar',
             method: 'POST',
             headers: {
-                'Content-Type': 'multipart/form-data'
+                'Content-Type': 'application/json'
             },
-            data: formData
+            data: JSON.stringify(data)
         })
             .then(() => {
                 setNomeCliente('')
@@ -43,10 +52,9 @@ const FormularioClientes = () => {
                 setLatitude('')
                 setLongitude('')  
                 setEmail('')
-                alert('Ciente cadastrado com sucesso!')
+                alert('Cliente cadastrado com sucesso!')
             })
             .catch(erro => console.log(erro))
-
     }
 
     return (    
@@ -57,8 +65,7 @@ const FormularioClientes = () => {
             <Typography component="h1" variant="h6">Formulário de Clientes</Typography>
             <Box component="form" sx={{ width: '100%' }} onSubmit={aoSubmeterForm}>
                 <TextField
-                    value={nomeCliente}
-                    onChange={evento => setNomeCliente(evento.target.value)}
+                    value={nomeCliente}                    
                     label="Nome do Cliente"
                     variant="standard"
                     fullWidth
@@ -66,49 +73,49 @@ const FormularioClientes = () => {
                     margin="dense"
                 />
                 <TextField
-                    value={cnpj}
-                    onChange={evento => setCnpj(evento.target.value)}
+                    value={cnpj}                    
                     label="CNPJ do Cliente"
                     variant="standard"
                     fullWidth
                     required
-                    margin="dense"                    
+                    margin="dense"  
+                    name="cnpj"                  
                 />
                 <TextField
-                    value={endereco}
-                    onChange={evento => setEndereco(evento.target.value)}
+                    value={endereco}                    
                     label="Endereço do Cliente"
                     variant="standard"
                     fullWidth
                     required
                     margin="dense"
+                    name="endereco"
                 />
                   <TextField
-                    value={latitude}
-                    onChange={evento => setLatitude(evento.target.value)}
+                    value={latitude}                    
                     label="Latitude"
                     variant="standard"
                     fullWidth
                     required
                     margin="dense"
+                    name="latitude"
                 />
                 <TextField
-                    value={longitude}
-                    onChange={evento => setLongitude(evento.target.value)}
+                    value={longitude}                    
                     label="Longitude"
                     variant="standard"
                     fullWidth
                     required
                     margin="dense"
+                    name="longitude"
                 />
                 <TextField
-                    value={email}
-                    onChange={evento => setEmail(evento.target.value)}
+                    value={email}                    
                     label="Email do Cliente"
                     variant="standard"
                     fullWidth
                     required
                     margin="dense"
+                    name="email"
                 />                              
 
                 <Button sx={{ marginTop: 1 }} type="submit" fullWidth variant="outlined">Salvar</Button>
