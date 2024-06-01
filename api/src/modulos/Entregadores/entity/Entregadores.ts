@@ -1,7 +1,8 @@
 export type EntregadoresEntity = {
   id: string;
   nome: string;
-  cnh: number;
+  cnh: string;
+  cpf: string;
   endereco: string;
   email: string;
   senha: string;

@@ -7,6 +7,8 @@ import { EntregasRepositorio } from './repository/entregas_repositorio';
 import { EntregasService } from './service/cadastraEntregas';
 import { ValidadorEntregasServices } from './service/validadorEntregas.sevices';
 import { CustomLoggerModule } from '../logger/logger.module';
+import { ListarEntregasService } from './service/listaEntregas';
+import { CriarEntregasService } from './service/criarEntregasService';
 
 @Module({
   imports: [TypeOrmModule.forFeature([EntregasEntity]), CustomLoggerModule],
@@ -15,7 +17,9 @@ import { CustomLoggerModule } from '../logger/logger.module';
     EntregasService,
     EntregasRepositorio,
     ValidadorEntregasServices,
+    ListarEntregasService,
+    CriarEntregasService
   ],
-  exports: [ValidadorEntregasServices, EntregasService],
+  exports: [ValidadorEntregasServices, EntregasService, ListarEntregasService, CriarEntregasService],
 })
 export class EntregasModule {}

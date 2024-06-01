@@ -14,7 +14,7 @@ import { AtualizaEntregadoresDTO, CriaEntregadoresDTO } from '../dto/Entregadore
 import { ListarEntregadoresService } from '../service/listaEntregadores';
 import { AutenticacaoGuard } from '../../Autenticacao/autenticacao.guard';
 
-@UseGuards(AutenticacaoGuard)
+// @UseGuards(AutenticacaoGuard)
 @Controller('entregadores')
 export class EntregadoresController {
   constructor(

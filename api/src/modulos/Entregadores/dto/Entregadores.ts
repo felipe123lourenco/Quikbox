@@ -18,12 +18,11 @@ export class CriaEntregadoresDTO {
   nome: string;
 
   @IsNotEmpty({ message: 'CPF deve ser informado' })
-  @IsString()
-  cpf: number;
+  cpf: string;
 
   @IsNotEmpty({ message: 'CNH deve ser informado' })
   @IsString()
-  cnh: number;
+  cnh: string;
 
   @IsNotEmpty({ message: 'Endereço deve ser informado' })
   @IsString()

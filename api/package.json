@@ -17,7 +17,10 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "migration:gen": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:generate ./src/db/migrations/qb -d src/db/data-source-cli.ts",
+    "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run -d src/db/data-source-cli.ts",
+    "migration:rev": "ts-node ./node_modules/typeorm/cli.js migration:revert -d src/db/data-source-cli.ts"
   },
   "dependencies": {
     "@nestjs/cache-manager": "^2.2.2",
@@ -33,6 +36,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "colors": "^1.4.0",
+    "pg": "^8.11.5",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
     "slugify": "^1.6.6",

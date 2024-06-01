@@ -18,21 +18,31 @@ const FormularioEntregadores = () => {
      const aoSubmeterForm = (evento: React.FormEvent<HTMLFormElement>) => {
         evento.preventDefault()
 
+        const form = evento.currentTarget;
         const formData = new FormData();
+        const data: any = {};
 
-        formData.append('nome', nome)
-        formData.append('cnh', cnh)
-        formData.append('endereco', endereco)      
-        formData.append('email', email)
-        formData.append('senha', senha)
+        const inputs: NodeListOf<HTMLInputElement> = form.querySelectorAll('input');
+
+        inputs.forEach(e => {
+            formData.append(e.name, e.value)
+            data[e.name] = e.value.toString();
+        });
+
+        data['cpf'] = '12345678901';
+        
+        // formData.append('cnh', cnh)
+        // formData.append('endereco', endereco)      
+        // formData.append('email', email)
+        // formData.append('senha', senha)
      
         http.request({
-            url: 'clientes/',
+            url: 'http://localhost:3000/entregadores/criar',
             method: 'POST',
             headers: {
-                'Content-Type': 'multipart/form-data'
+                'Content-Type': 'application/json'
             },
-            data: formData
+            data: JSON.stringify(data)
         })
             .then(() => {
                 setNomeEntregador('')
@@ -43,7 +53,6 @@ const FormularioEntregadores = () => {
                 alert('Entregador cadastrado com sucesso!')
             })
             .catch(erro => console.log(erro))
-
     }
 
     return ( 
@@ -61,6 +70,7 @@ const FormularioEntregadores = () => {
                     fullWidth
                     required
                     margin="dense"
+                    name="nome"
                 />
                 <TextField
                     value={cnh}
@@ -70,6 +80,7 @@ const FormularioEntregadores = () => {
                     fullWidth
                     required
                     margin="dense"
+                    name="cnh"
                 />
                 <TextField
                     value={endereco}
@@ -79,6 +90,7 @@ const FormularioEntregadores = () => {
                     fullWidth
                     required
                     margin="dense"
+                    name="endereco"
                 />
                 <TextField
                     value={email}
@@ -88,6 +100,7 @@ const FormularioEntregadores = () => {
                     fullWidth
                     required
                     margin="dense"
+                    name="email"
                 />  
 
                  <TextField
@@ -98,6 +111,7 @@ const FormularioEntregadores = () => {
                     fullWidth
                     required
                     margin="dense"
+                    name="senha"
                 />                                   
 
                 <Button sx={{ marginTop: 1 }} type="submit" fullWidth variant="outlined">Salvar</Button>

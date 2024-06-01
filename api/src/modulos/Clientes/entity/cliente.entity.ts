@@ -14,8 +14,8 @@ export class ClienteEntity {
   @Column({ name: 'nome', length: 100, nullable: false })
   nome: string;
 
-  @Column({ name: 'cnpj', length: 100, nullable: false })
-  cnpj: number;
+  @Column({ name: 'cnpj', length: 14, nullable: false })
+  cnpj: string;
 
   @Column({ name: 'endereco', length: 1000, nullable: false })
   endereco: string;
