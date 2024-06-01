@@ -14,8 +14,8 @@ import { AtualizaClienteDTO, CriaClienteDTO } from '../dto/Cliente';
 import { ListarClienteService } from '../service/listaClientes';
 import { AutenticacaoGuard } from '../../Autenticacao/autenticacao.guard';
 
-@UseGuards(AutenticacaoGuard)
-@Controller('cliente')
+//@UseGuards(AutenticacaoGuard)
+@Controller('clientes')
 export class ClienteController {
   constructor(
     private readonly criarClienteService: CriarClienteService,

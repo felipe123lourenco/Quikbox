@@ -72,7 +72,8 @@ const FormularioClientes = () => {
                     required
                     margin="dense"
                     onChange={evento => setNomeCliente(evento.target.value)}
-                />
+                    name="nome"
+                 />
                 <TextField
                     value={cnpj}                    
                     label="CNPJ do Cliente"
