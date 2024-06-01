@@ -107,6 +107,7 @@ const FormularioEntregas = () => {
                     margin="dense"
                     name="altura"
                     onChange={evento => setAltura(evento.target.value)} 
+                    type="number"
                 />
                  <TextField
                     value={largura}                    
