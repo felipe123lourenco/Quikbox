@@ -81,7 +81,8 @@ const FormularioClientes = () => {
                     required
                     margin="dense"  
                     name="cnpj" 
-                    onChange={evento => setCnpj(evento.target.value)}                 
+                    onChange={evento => setCnpj(evento.target.value)}     
+                    type="number"            
                 />
                 <TextField
                     value={endereco}                    
