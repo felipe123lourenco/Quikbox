@@ -30,6 +30,8 @@ const FormularioEntregas = () => {
             data[e.name] = e.value.toString();
         });
 
+        data['status'] = 'PENDENTE';
+
         //formData.append('endereco', endereco)
         //formData.append('latitude', latitude)
         //formData.append('longitude', longitude)

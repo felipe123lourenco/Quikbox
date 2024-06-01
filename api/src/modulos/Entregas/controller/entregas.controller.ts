@@ -14,7 +14,7 @@ import { AtualizaEntregasDTO, CriaEntregasDTO } from '../dto/entregasDTO';
 import { ListarEntregasService } from '../service/listaEntregas';
 import { AutenticacaoGuard } from '../../Autenticacao/autenticacao.guard';
 
-@UseGuards(AutenticacaoGuard)
+// @UseGuards(AutenticacaoGuard)
 @Controller('entregas')
 export class EntregasController {
   constructor(
