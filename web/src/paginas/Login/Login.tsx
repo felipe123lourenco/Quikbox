@@ -15,18 +15,21 @@ const Login = () => {
      const aoSubmeterForm = (evento: React.FormEvent<HTMLFormElement>) => {
         evento.preventDefault()
 
+        const form = evento.currentTarget;
         const formData = new FormData();
+        const data: any = {};
 
-        formData.append('email', email)
-        formData.append('senha', email)
+        //formData.append('email', email)
+        //formData.append('senha', email)
      
         http.request({
-            url: 'login/',
+            url: 'http://localhost:3000/login/criar',
             method: 'POST',
             headers: {
-                'Content-Type': 'multipart/form-data'
+                'Content-Type': 'application/json'
             },
-            data: formData
+
+            data: JSON.stringify(data)
         })
             .then(() => {                                
                 setEmail('')
@@ -50,6 +53,7 @@ const Login = () => {
                     fullWidth
                     required
                     margin="dense"
+                    name="login"
                 />
                 <TextField
                     value={senha}
@@ -59,6 +63,7 @@ const Login = () => {
                     fullWidth
                     required
                     margin="dense"
+                    name="senha"
                 />              
                 <Button sx={{ marginTop: 1 }} type="submit" fullWidth variant="outlined">Logar</Button>
             </Box>
