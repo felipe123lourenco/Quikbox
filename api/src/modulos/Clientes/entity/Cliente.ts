@@ -3,7 +3,8 @@ export type ClienteEntity = {
   nome: string;
   cnpj: number;
   endereco: string;
-  latitude: string
-  longitude: string
+  latitude: string;
+  longitude: string;
   email: string;
+  senha: string;
 };

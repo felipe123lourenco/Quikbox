@@ -6,4 +6,5 @@ export default interface IClientes {
     latitude: string
     longitude: string
     email: string
+    senha: string   
   }

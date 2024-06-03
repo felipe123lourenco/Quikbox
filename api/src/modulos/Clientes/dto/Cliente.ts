@@ -34,6 +34,10 @@ export class CriaClienteDTO {
   @IsEmail(undefined, { message: 'Email inválido' })
   @EmailNotExiste({ message: 'Email já cadastrado' })
   email: string;
+
+  @IsNotEmpty({ message: 'Senha deve ser informada' })
+  @IsString()  
+  senha: string;
 }
 
 @Injectable()
