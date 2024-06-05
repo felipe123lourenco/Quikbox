@@ -29,5 +29,6 @@ export class ClienteEntity {
   @Column({ name: 'email', length: 150, nullable: false })
   email: string;
 
-
+  @Column({ name: 'senha', length: 150, nullable: false })
+  senha: string;
 }

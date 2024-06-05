@@ -15,6 +15,7 @@ const FormularioClientes = () => {
     const [latitude, setLatitude] = useState('')   
     const [longitude, setLongitude] = useState('')   
     const [email, setEmail] = useState('')     
+    const [senha, setSenha] = useState('') 
 
      const aoSubmeterForm = (evento: React.FormEvent<HTMLFormElement>) => {
         evento.preventDefault()
@@ -36,6 +37,7 @@ const FormularioClientes = () => {
         //formData.append('latitude', latitude)
         //formData.append('longitude', longitude)
         //formData.append('email', email)
+        //formData.append('senha', senha)
      
         http.request({
             url: 'http://localhost:3000/clientes/criar',
@@ -52,6 +54,7 @@ const FormularioClientes = () => {
                 setLatitude('')
                 setLongitude('')  
                 setEmail('')
+                setSenha('')
                 alert('Cliente cadastrado com sucesso!')
             })
             .catch(erro => console.log(erro))
@@ -124,6 +127,16 @@ const FormularioClientes = () => {
                     margin="dense"
                     name="email"
                     onChange={evento => setEmail(evento.target.value)} 
+                />
+                 <TextField
+                    value={senha}                    
+                    label="Senha do Cliente"
+                    variant="standard"
+                    fullWidth
+                    required
+                    margin="dense"
+                    name="senha"
+                    onChange={evento => setSenha(evento.target.value)} 
                 />                              
 
                 <Button sx={{ marginTop: 1 }} type="submit" fullWidth variant="outlined">Salvar</Button>
