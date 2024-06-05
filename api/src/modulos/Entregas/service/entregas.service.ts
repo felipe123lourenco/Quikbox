@@ -37,7 +37,7 @@ export class EntregasService {
   }
 
   async cadastraEntregas(data: CriaEntregasDTO): Promise<EntregasEntity> {
-    const idEntrega = await this.gerarCodigoEntrega(data.estado);
+    const idEntrega = await this.gerarCodigoEntrega(data.estado.toUpperCase());
     const novoEntregasEntity = new EntregasEntity();
 
     novoEntregasEntity.idEntrega = idEntrega;
@@ -49,7 +49,7 @@ export class EntregasService {
     novoEntregasEntity.complemento = data.complemento;
     novoEntregasEntity.bairro = data.bairro;
     novoEntregasEntity.cidade = data.cidade;
-    novoEntregasEntity.estado = data.estado;
+    novoEntregasEntity.estado = data.estado.toUpperCase();
     novoEntregasEntity.cep = data.cep;
     novoEntregasEntity.largura = data.largura;
     novoEntregasEntity.altura = data.altura;

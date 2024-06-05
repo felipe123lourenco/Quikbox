@@ -45,20 +45,11 @@ export class CriaEntregasDTO {
   cep: string;
 
   @IsNotEmpty({ message: 'A largura (em centimetros) deve ser informada.' })
-  @MaxLength(5, {
-    message: 'A largura (em centimetros) deve ter no máximo 5 caracteres.',
-  })
   largura: number;
 
   @IsNotEmpty({ message: 'A altura (em centimetros) deve ser informada.' })
-  @MaxLength(5, {
-    message: 'A altura (em centimetros) deve ter no máximo 5 caracteres.',
-  })
   altura: number;
 
   @IsNotEmpty({ message: 'O peso (em gramas) deve ser informado.' })
-  @MaxLength(5, {
-    message: 'O peso (em gramas) deve ter no máximo 5 caracteres.',
-  })
   peso: number;
 }

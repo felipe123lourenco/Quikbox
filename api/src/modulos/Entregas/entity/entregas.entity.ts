@@ -61,10 +61,10 @@ export class EntregasEntity {
   @Column({ name: 'status', enum: StatusEntrega, nullable: false })
   status: StatusEntrega;
 
-  @Column({ name: 'codigo_confirmacao', length: 150, nullable: false })
+  @Column({ name: 'codigo_confirmacao', length: 150, nullable: true })
   codigoConfirmacao: string;
 
-  @Column({ name: 'codigo_coleta', length: 150, nullable: false })
+  @Column({ name: 'codigo_coleta', length: 150, nullable: true })
   codigoColeta: string;
 
   @CreateDateColumn({ name: 'created_at' })
