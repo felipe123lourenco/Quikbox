@@ -24,7 +24,7 @@ import { UsuarioModule } from './modulos/usuario/usuario.module';
   imports: [
     ClienteModule,
     EntregadoresModule,
-    EntregasModule,    
+    EntregasModule,
     ConfigModule.forRoot({
       isGlobal: true,
     }),
@@ -59,4 +59,4 @@ import { UsuarioModule } from './modulos/usuario/usuario.module';
     CustomLogger,
   ],
 })
-export class AppModule {}
+export class AppModule { }

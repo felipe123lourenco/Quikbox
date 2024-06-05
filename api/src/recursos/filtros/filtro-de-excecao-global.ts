@@ -1,10 +1,10 @@
 import {
-  ArgumentsHost,
-  Catch,
-  ConsoleLogger,
   ExceptionFilter,
+  Catch,
+  ArgumentsHost,
   HttpException,
   HttpStatus,
+  ConsoleLogger,
 } from '@nestjs/common';
 import { HttpAdapterHost } from '@nestjs/core';
 
@@ -12,52 +12,34 @@ import { HttpAdapterHost } from '@nestjs/core';
 export class FiltroDeExcecaoGlobal implements ExceptionFilter {
   constructor(
     private adapterHost: HttpAdapterHost,
-    private loggerNativo: ConsoleLogger,
-  ) {}
+    private readonly logger: ConsoleLogger,
+  ) { }
 
-  catch(excecao: unknown, host: ArgumentsHost) {
+  catch(exception: unknown, host: ArgumentsHost) {
+    this.logger.error(exception);
     const { httpAdapter } = this.adapterHost;
+    const ctx = host.switchToHttp();
+    const response = ctx.getResponse();
+    const request = ctx.getRequest();
 
-    const contexto = host.switchToHttp();
-    const resposta = contexto.getResponse();
-    const requisicao = contexto.getRequest();
-    const stackTrace = excecao instanceof Error ? excecao.stack : null;
+    if ('usuario' in request) {
+      this.logger.log(`Rota acessada pelo usuário ${request.usuario.sub}`);
+    }
 
     const { status, body } =
-      excecao instanceof HttpException
+      exception instanceof HttpException
         ? {
-            status: excecao.getStatus(),
-            body: {
-              statusCode: excecao.getStatus(),
-              timestamp: new Date().toISOString(),
-              path: httpAdapter.getRequestUrl(requisicao),
-              message: excecao.message,
-              response: excecao.getResponse(),
-            },
-          }
+          status: exception.getStatus(),
+          body: exception.getResponse(),
+        }
         : {
-            status: HttpStatus.INTERNAL_SERVER_ERROR,
-            body: {
-              statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-              timestamp: new Date().toISOString(),
-              path: httpAdapter.getRequestUrl(requisicao),
-              message: 'Erro Interno no Servidor',
-              response: resposta,
-            },
-          };
+          status: HttpStatus.INTERNAL_SERVER_ERROR,
+          body: {
+            timestamp: new Date().toISOString(),
+            path: httpAdapter.getRequestUrl(request),
+          },
+        };
 
-    httpAdapter.reply(resposta, body, status);
-
-    if (status !== HttpStatus.OK) {
-      this.loggerNativo.error(
-        excecao instanceof HttpException ? excecao.getResponse() : excecao,
-        stackTrace,
-      );
-    } else {
-      this.loggerNativo.log(
-        excecao instanceof HttpException ? excecao.getResponse() : excecao,
-        contexto,
-      );
-    }
+    httpAdapter.reply(response, body, status);
   }
 }

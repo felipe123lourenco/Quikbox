@@ -1,45 +1,46 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Patch,
-  Post,
-  UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 
-import { CriarEntregasService } from '../service/criarEntregasService';
-import { AtualizaEntregasDTO, CriaEntregasDTO } from '../dto/entregasDTO';
-import { ListarEntregasService } from '../service/listaEntregas';
-import { AutenticacaoGuard } from '../../Autenticacao/autenticacao.guard';
+import { CriaEntregasDTO } from '../dto/CriaEntregas.dto';
+// import { AtualizaEntregasDTO } from '../dto/AtualizaEntregas.dto';
+import { EntregasService } from '../service/entregas.service';
 
 // @UseGuards(AutenticacaoGuard)
 @Controller('entregas')
 export class EntregasController {
-  constructor(
-    private readonly criarEntregasService: CriarEntregasService,
-    private readonly listarEntregasService: ListarEntregasService,
-  ) {}
+  constructor(private readonly entregasService: EntregasService) { }
 
-  @Post('criar')
+  @Post()
   async criaEntregas(@Body() data: CriaEntregasDTO) {
-    return await this.criarEntregasService.cadastraEntregas(data);
+    return await this.entregasService.cadastraEntregas(data);
   }
 
-  @Get('listar')
+  @Get()
   async listaEntregas() {
-    return await this.listarEntregasService.listarEntregas();
+    return await this.entregasService.listarEntregas();
   }
 
-  
-  @Patch(':id')
-  async atualizaEntregas(
-    @Param('id') id: string,
-    @Body() dadosCliente: AtualizaEntregasDTO,
-  ) {
-    return this.atualizaEntregas(id, dadosCliente);
+  @Get('gerar-codigo-coleta')
+  async gerarCodigoColeta() {
+    return await this.entregasService.gerarCodigoColeta();
   }
+
+  @Get(':id')
+  async buscaEntregas(@Param('id') id: string) {
+    return await this.entregasService.buscarEntregaPorId(id);
+  }
+
+  @Get('obter-codigo-entrega/:uf')
+  async obterCodigoEntrega(@Param('uf') uf: string) {
+    return await this.entregasService.gerarCodigoEntrega(uf);
+  }
+
+  // @Patch(':id')
+  // async atualizaEntregas(
+  //   @Param('id') id: string,
+  //   @Body() dadosEntrega: AtualizaEntregasDTO,
+  // ) {
+  //   //return this.entregasService.atualizaEntregas(id, dadosEntrega);
+  // }
 
   @Delete(':id')
   async deletaEntregas(@Param('id') id: string) {

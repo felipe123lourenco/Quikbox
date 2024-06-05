@@ -18,9 +18,10 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "migration:gen": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:generate ./src/db/migrations/qb -d src/db/data-source-cli.ts",
-    "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run -d src/db/data-source-cli.ts",
-    "migration:rev": "ts-node ./node_modules/typeorm/cli.js migration:revert -d src/db/data-source-cli.ts"
+    "migration:show": "ts-node node_modules/typeorm/cli.js migration:show --dataSource src/db/data-source-cli.ts",
+    "migration:gen": "ts-node node_modules/typeorm/cli.js migration:generate --dataSource src/db/data-source-cli.ts",
+    "migration:run": "ts-node node_modules/typeorm/cli.js migration:run --dataSource src/db/data-source-cli.ts",
+    "migration:rev": "ts-node node_modules/typeorm/cli.js migration:revert --dataSource src/db/data-source-cli.ts"
   },
   "dependencies": {
     "@nestjs/cache-manager": "^2.2.2",
