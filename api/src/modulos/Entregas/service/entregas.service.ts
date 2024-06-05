@@ -37,17 +37,24 @@ export class EntregasService {
   }
 
   async cadastraEntregas(data: CriaEntregasDTO): Promise<EntregasEntity> {
-    const idEntrega = await this.gerarCodigoEntrega(data.enderecoEntrega.UF);
+    const idEntrega = await this.gerarCodigoEntrega(data.estado);
     const novoEntregasEntity = new EntregasEntity();
 
     novoEntregasEntity.idEntrega = idEntrega;
-    novoEntregasEntity.geolocalizacao = data.geolocalizacao;
+    novoEntregasEntity.clienteId = data.clienteId;
+    novoEntregasEntity.latitude = data.latitude;
+    novoEntregasEntity.longitude = data.longitude;
+    novoEntregasEntity.logradouro = data.logradouro;
+    novoEntregasEntity.numero = data.numero;
+    novoEntregasEntity.complemento = data.complemento;
+    novoEntregasEntity.bairro = data.bairro;
+    novoEntregasEntity.cidade = data.cidade;
+    novoEntregasEntity.estado = data.estado;
+    novoEntregasEntity.cep = data.cep;
     novoEntregasEntity.largura = data.largura;
     novoEntregasEntity.altura = data.altura;
     novoEntregasEntity.peso = data.peso;
     novoEntregasEntity.status = StatusEntrega.PENDENTE;
-    novoEntregasEntity.codigoConfirmacao = data.codigoConfirmacao;
-    novoEntregasEntity.codigoColeta = data.codigoColeta;
 
     this.salvar(novoEntregasEntity);
 

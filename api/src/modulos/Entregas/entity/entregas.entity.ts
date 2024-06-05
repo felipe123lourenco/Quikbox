@@ -3,11 +3,9 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
-  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { EntregaEnderecoEntity } from './entrega-endereco.entity';
 import { StatusEntrega } from '../../../recursos/enums/status-entrega.enum';
 
 @Entity({ name: 'entregas' })
@@ -18,8 +16,38 @@ export class EntregasEntity {
   @Column({ name: 'id_entrega', length: 8, nullable: false })
   idEntrega: string;
 
-  @Column({ name: 'geolocalizacao', length: 100, nullable: false })
-  geolocalizacao: string;
+  @Column({ name: 'cliente_id', nullable: false })
+  clienteId: string;
+
+  @Column({ name: 'entregador_id', nullable: true })
+  entregadorId: string;
+
+  @Column({ name: 'latitude', length: 20 })
+  latitude: string;
+
+  @Column({ name: 'longitude', length: 20 })
+  longitude: string;
+
+  @Column({ name: 'logradouro', length: 200, nullable: false })
+  logradouro: string;
+
+  @Column({ name: 'numero', length: 20, nullable: false })
+  numero: string;
+
+  @Column({ name: 'complemento', length: 50, nullable: false })
+  complemento: string;
+
+  @Column({ name: 'bairro', length: 100, nullable: false })
+  bairro: string;
+
+  @Column({ name: 'cidade', length: 100, nullable: false })
+  cidade: string;
+
+  @Column({ name: 'estado', length: 2, nullable: false })
+  estado: string;
+
+  @Column({ name: 'cep', length: 8, nullable: false })
+  cep: string;
 
   @Column({ name: 'largura', nullable: false })
   largura: number;
@@ -48,10 +76,4 @@ export class EntregasEntity {
   @DeleteDateColumn({ name: 'deleted_at' })
   deletedAt: string;
 
-  @OneToOne(
-    () => EntregaEnderecoEntity,
-    (entregaEndereco) => entregaEndereco.entrega,
-    { cascade: true },
-  )
-  enderecoEntrega: EntregaEnderecoEntity;
 }

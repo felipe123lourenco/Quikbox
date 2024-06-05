@@ -20,7 +20,7 @@ export class ClienteController {
   constructor(
     private readonly criarClienteService: CriarClienteService,
     private readonly listarClienteService: ListarClienteService,
-  ) {}
+  ) { }
 
   @Post('criar')
   async criaCliente(@Body() data: CriaClienteDTO) {
@@ -32,7 +32,6 @@ export class ClienteController {
     return await this.listarClienteService.listarCliente();
   }
 
-  
   @Patch(':id')
   async atualizaCliente(
     @Param('id') id: string,

@@ -1,36 +1,64 @@
-import { IsInt, IsNotEmpty, IsNumberString, IsObject, ValidateNested } from 'class-validator';
+import { IsNotEmpty, MaxLength } from 'class-validator';
 import { Injectable } from '@nestjs/common';
-import { Type } from 'class-transformer';
-import { CriaEnderecoEntregaDTO } from './CriaEnderecoEntrega.dto';
 
 @Injectable()
 export class CriaEntregasDTO {
+  @IsNotEmpty({ message: 'O código do cliente deve ser informado.' })
+  clienteId: string;
 
-  @IsNotEmpty({ message: 'O campo geolocalização deve ser informado.' })
-  @IsNumberString(undefined, {
-    message: 'O campo CPF deve conter apenas números.',
+  @IsNotEmpty({ message: 'A latitude deve ser informada.' })
+  @MaxLength(20, { message: 'A latitude deve ter no máximo 20 caracteres.' })
+  latitude: string;
+
+  @IsNotEmpty({ message: 'A longitude deve ser informada.' })
+  @MaxLength(20, { message: 'A longitude deve ter no máximo 20 caracteres.' })
+  longitude: string;
+
+  @IsNotEmpty({ message: 'O logradouro deve ser informado.' })
+  @MaxLength(200, {
+    message: 'O logradouro deve ter no máximo 200 caracteres.',
   })
-  geolocalizacao: string;
+  logradouro: string;
 
-  @IsNotEmpty({ message: 'O campo largura (em centimetros) deve ser informado.' })
-  @IsInt({ message: 'O campo largura (em centimetros) deve ser um inteiro.' })
+  @IsNotEmpty({ message: 'O número deve ser informado.' })
+  @MaxLength(20, { message: 'O número deve ter no máximo 20 caracteres.' })
+  numero: string;
+
+  @IsNotEmpty({ message: 'O complemento deve ser informado.' })
+  @MaxLength(50, { message: 'O complemento deve ter no máximo 50 caracteres.' })
+  complemento: string;
+
+  @IsNotEmpty({ message: 'O bairro deve ser informado.' })
+  @MaxLength(100, { message: 'O bairro deve ter no máximo 100 caracteres.' })
+  bairro: string;
+
+  @IsNotEmpty({ message: 'A cidade deve ser informada.' })
+  @MaxLength(100, { message: 'A cidade deve ter no máximo 100 caracteres.' })
+  cidade: string;
+
+  @IsNotEmpty({ message: 'O estado deve ser informado.' })
+  @MaxLength(2, { message: 'O estado deve ter no máximo 2 caracteres.' })
+  estado: string;
+
+  @IsNotEmpty({ message: 'O cep deve ser informado.' })
+  @MaxLength(8, { message: 'O cep deve ter no máximo 8 caracteres.' })
+  cep: string;
+
+  @IsNotEmpty({ message: 'A largura (em centimetros) deve ser informada.' })
+  @MaxLength(5, {
+    message: 'A largura (em centimetros) deve ter no máximo 5 caracteres.',
+  })
   largura: number;
 
-  @IsNotEmpty({ message: 'O campo altura (em centimetros) deve ser informado.' })
-  @IsInt({ message: 'O campo altura (em centimetros) deve ser um inteiro.' })
+  @IsNotEmpty({ message: 'A altura (em centimetros) deve ser informada.' })
+  @MaxLength(5, {
+    message: 'A altura (em centimetros) deve ter no máximo 5 caracteres.',
+  })
   altura: number;
 
-  @IsNotEmpty({ message: 'O campo peso (em gramas) deve ser informado.' })
-  @IsInt({ message: 'O campo peso (em gramas) deve ser um inteiro.' })
+  @IsNotEmpty({ message: 'O peso (em gramas) deve ser informado.' })
+  @MaxLength(5, {
+    message: 'O peso (em gramas) deve ter no máximo 5 caracteres.',
+  })
   peso: number;
-
-  codigoConfirmacao: string;
-
-  codigoColeta: string;
-
-  @ValidateNested()
-  @IsObject()
-  @IsNotEmpty({ message: 'O endereço de entrega deve ser informado.' })
-  @Type(() => CriaEnderecoEntregaDTO)
-  enderecoEntrega: CriaEnderecoEntregaDTO;
 }
