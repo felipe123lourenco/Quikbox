@@ -1,5 +1,4 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
-
 import { CriaEntregasDTO } from '../dto/CriaEntregas.dto';
 // import { AtualizaEntregasDTO } from '../dto/AtualizaEntregas.dto';
 import { EntregasService } from '../service/entregas.service';
@@ -45,5 +44,15 @@ export class EntregasController {
   @Delete(':id')
   async deletaEntregas(@Param('id') id: string) {
     return this.deletaEntregas(id);
+  }
+
+  @Get('listar/status')
+  async obterEntregasGrupoStatus() {
+    return this.entregasService.obterEntregasGrupoStatus();
+  }
+
+  @Get('listar/entregas/entregador/:id')
+  async obterEntregasPendentesEntregador(id: string) {
+    return this.entregasService.obterEntregasPendentesEntregador(id);
   }
 }

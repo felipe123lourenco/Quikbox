@@ -6,6 +6,7 @@ import { StatusEntrega } from 'src/recursos/enums/status-entrega.enum';
 import { ufValida } from 'src/recursos/utils';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { randomBytes } from 'crypto';
+import { getDistance } from '../../../recursos/utils';
 
 export class EntregasService {
   constructor(
@@ -108,5 +109,19 @@ export class EntregasService {
     }
 
     return codigo;
+  }
+
+  async obterEntregasGrupoStatus() {
+    const entregas = await this.entregasRepository.createQueryBuilder('e').select('e.status, count(entregas.status) as totstatus').groupBy('e.status').getRawMany();
+    return entregas.sort((e1, e2) => Object.keys(StatusEntrega).indexOf(e1.status) - Object.keys(StatusEntrega).indexOf(e2.status));
+  }
+
+  async obterEntregasPendentesEntregador(id: string) {
+    const entregas = await this.entregasRepository.createQueryBuilder('e')
+    .innerJoin('clientes', 'c', 'e.cliente_id = cast(c.id as varchar)')
+    .select('e.id, e.latitude as late, e.longitude as longe, c.latitude as latc, c.longitude as longc')
+    .where('e.status = :status').setParameter('status', StatusEntrega.PENDENTE).getRawMany();
+    return entregas.map((e) => ({...e, distancia: getDistance(e.late, e.longe, e.latc, e.longc)}));
+    return entregas;
   }
 }
