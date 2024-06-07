@@ -6,8 +6,8 @@ import { AutenticacaoService } from './autenticacao.service';
 import { AutenticaDTO } from './dto/autentica.dto';
 import { ClienteEntity } from '../Clientes/entity/cliente.entity';
 import { ClienteModule } from '../Clientes/cliente.module';
-import { ListarClienteService } from '../Clientes/service/listaClientes';
-import { ListarEntregadoresService } from '../Entregadores/service/listaEntregadores';
+import { ClienteService } from '../Clientes/service/cliente.service';
+import { EntregadorService } from '../Entregadores/service/entregador.service';
 import { EntregadoresModule } from '../Entregadores/entregadores.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { EntregadoresEntity } from '../Entregadores/entity/entregadores.entity';
@@ -35,6 +35,6 @@ import { UsuarioService } from '../usuario/service/usuario.service';
     }),
   ],
   controllers: [AutenticacaoController],
-  providers: [AutenticaDTO, ClienteRepositorio, EntregadoresRepositorio, AutenticacaoService, ListarClienteService, ListarEntregadoresService, CustomLogger,UsuarioService],
+  providers: [AutenticaDTO, ClienteRepositorio, EntregadoresRepositorio, AutenticacaoService, ClienteService, EntregadorService, CustomLogger,UsuarioService],
 })
 export class AutenticacaoModule {}

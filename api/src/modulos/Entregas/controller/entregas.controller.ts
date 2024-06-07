@@ -3,6 +3,7 @@ import { CriaEntregasDTO } from '../dto/CriaEntregas.dto';
 // import { AtualizaEntregasDTO } from '../dto/AtualizaEntregas.dto';
 import { EntregasService } from '../service/entregas.service';
 import { StatusEntrega } from 'src/recursos/enums/status-entrega.enum';
+import internal from 'node:stream';
 
 // @UseGuards(AutenticacaoGuard)
 @Controller('entregas')
@@ -62,10 +63,27 @@ export class EntregasController {
     return this.entregasService.obterEntregasStatus(status);      
   }
 
-  @Put('/confirma-entrega/:id')
+  @Put('/mudastatus/:id')
   async confirmaEntregas(
-    @Param('id') id: string, @Param('codigoConfirmacao') codigoConfirmacao: string
+    @Param('id') id: string, @Param('codigoConfirmacao') codigoConfirmacao: string, @Param('status') status: string
   ) {
-    return await this.entregasService.atualizaStatusEntrega(id, StatusEntrega.ENTREGUE, codigoConfirmacao);
+    let statusEntrega: StatusEntrega;
+    switch (status.toString().toUpperCase()) {
+      case 'AGUARDANDO_COLETA':
+        statusEntrega = StatusEntrega.AGUARDANDO_COLETA;
+        break;    
+      case 'EM_ROTA':
+        statusEntrega = StatusEntrega.EM_ROTA;
+        break;
+      case 'ENTREGUE':
+        statusEntrega = StatusEntrega.ENTREGUE;
+        break;
+      case 'CANCELADO':
+        statusEntrega = StatusEntrega.CANCELADO;
+        break;
+      default:
+        statusEntrega = StatusEntrega.PENDENTE;
+    }
+    return await this.entregasService.atualizaStatusEntrega(id, statusEntrega , codigoConfirmacao);
   }
 }

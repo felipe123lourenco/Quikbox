@@ -9,9 +9,8 @@ import {
   UseGuards,
 } from '@nestjs/common';
 
-import { CriarEntregadoresService } from '../service/criarEntregadoresService';
+import { EntregadorService } from '../../Entregadores/service/entregador.service';
 import { AtualizaEntregadoresDTO, CriaEntregadoresDTO } from '../dto/Entregadores';
-import { ListarEntregadoresService } from '../service/listaEntregadores';
 import { AutenticacaoGuard } from '../../Autenticacao/autenticacao.guard';
 import { HashSenhaPipe } from 'src/recursos/pipes/hash-senha.pipe';
 
@@ -19,18 +18,17 @@ import { HashSenhaPipe } from 'src/recursos/pipes/hash-senha.pipe';
 @Controller('entregadores')
 export class EntregadoresController {
   constructor(
-    private readonly criarEntregadoresService: CriarEntregadoresService,
-    private readonly listarEntregadoresService: ListarEntregadoresService,
+    private readonly entregadoresService: EntregadorService,
   ) {}
 
   @Post('criar')
   async criaEntregadores(@Body()  {senha, ...data}: CriaEntregadoresDTO,@Body('senha', HashSenhaPipe)senhaHasheada: string) {
-      return await this.criarEntregadoresService.cadastraEntregadores({...data, senha: senhaHasheada});
+      return await this.entregadoresService.cadastraEntregadores({...data, senha: senhaHasheada});
   }
 
   @Get('listar')
   async listaEntregadores() {
-    return await this.listarEntregadoresService.listarEntregadores();
+    return await this.entregadoresService.listarEntregadores();
   }
 
   

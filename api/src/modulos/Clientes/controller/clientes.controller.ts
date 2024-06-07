@@ -9,9 +9,8 @@ import {
   UseGuards,
 } from '@nestjs/common';
 
-import { CriarClienteService } from '../service/criarClienteService';
 import { AtualizaClienteDTO, CriaClienteDTO } from '../dto/Cliente';
-import { ListarClienteService } from '../service/listaClientes';
+import { ClienteService } from '../../Clientes/service/cliente.service';
 import { AutenticacaoGuard } from '../../Autenticacao/autenticacao.guard';
 import { HashSenhaPipe } from 'src/recursos/pipes/hash-senha.pipe';
 
@@ -19,18 +18,17 @@ import { HashSenhaPipe } from 'src/recursos/pipes/hash-senha.pipe';
 @Controller('clientes')
 export class ClienteController {
   constructor(
-    private readonly criarClienteService: CriarClienteService,
-    private readonly listarClienteService: ListarClienteService,
+    private readonly clienteService: ClienteService,
   ) { }
 
   @Post('criar')
   async criaCliente(@Body() {senha, ...data}: CriaClienteDTO,@Body('senha', HashSenhaPipe)senhaHasheada: string,) {
-    return await this.criarClienteService.cadastraCliente({...data, senha: senhaHasheada});
+    return await this.clienteService.cadastraCliente({...data, senha: senhaHasheada});
   }
 
   @Get('listar')
   async listaCliente() {
-    return await this.listarClienteService.listarCliente();
+    return await this.clienteService.listarCliente();
   }
 
   @Patch(':id')

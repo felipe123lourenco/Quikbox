@@ -132,16 +132,16 @@ export class EntregasService {
     .where('e.status = :status').setParameter('status', status).getMany();
   }
 
-  async atualizaStatusEntrega(id: string, status: StatusEntrega, codigoConfirmacao: string) {
+  async atualizaStatusEntrega(id: string, status: StatusEntrega, codigoConfirmacao: string = '') {
     const entrega = await this.buscarPorId(id);
     
-    if (status === StatusEntrega.ENTREGUE) {
+    if (status === StatusEntrega.ENTREGUE){ 
       if (entrega.codigoConfirmacao === codigoConfirmacao){
         entrega.status = status; 
        } else {
         throw new Error('Código de confirmação inválido');
        } 
-    }else{
+    } else {
       entrega.status = status; 
     }
      

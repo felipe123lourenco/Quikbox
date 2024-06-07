@@ -3,8 +3,8 @@ import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { ClienteEntity } from '../Clientes/entity/cliente.entity';
 import { EntregadoresEntity } from '../Entregadores/entity/entregadores.entity';
-import { ListarClienteService } from '../Clientes/service/listaClientes';
-import { ListarEntregadoresService } from '../Entregadores/service/listaEntregadores';
+import { ClienteService } from '../Clientes/service/cliente.service';
+import { EntregadorService } from '../Entregadores/service/entregador.service';
 
 export interface UsuarioPayload {
   id: string;
@@ -28,8 +28,8 @@ interface usuario{
 export class AutenticacaoService {
   constructor(
     private jwtService: JwtService,
-    private readonly listaCliente: ListarClienteService,
-    private readonly listaEntregadores: ListarEntregadoresService,
+    private readonly listaCliente: ClienteService,
+    private readonly listaEntregadores: EntregadorService,
   ) {}
 
   async login(email: string, senhaInserida: string) {
