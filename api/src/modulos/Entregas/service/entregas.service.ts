@@ -122,9 +122,9 @@ export class EntregasService {
   async obterEntregasPendentesEntregador(id: string) {
     const entregas = await this.entregasRepository.createQueryBuilder('e')
     .innerJoin('clientes', 'c', 'e.cliente_id = cast(c.id as varchar)')
-    .select('e.id, e.latitude as late, e.longitude as longe, c.latitude as latc, c.longitude as longc')
+    .select('e.id, e.latitude as late, e.longitude as longe, c.latitude as latc, c.longitude as longc, e.logradouro as logradouro, e.bairro as bairro, e.numero as numero')
     .where('e.status = :status').setParameter('status', StatusEntrega.PENDENTE).getRawMany();
-    return entregas.map((e) => ({...e, distancia: getDistance(e.late, e.longe, e.latc, e.longc)}));
+    return entregas.map((e) => ({...e, distancia: getDistance(e.late, e.longe, e.latc, e.longc)})).slice(0, 4);
   }
 
   async obterEntregasStatus(status: string) {

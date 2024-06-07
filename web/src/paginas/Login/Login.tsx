@@ -18,7 +18,8 @@ const Login = () => {
      const aoSubmeterForm = (evento: React.FormEvent<HTMLFormElement>) => {
         evento.preventDefault()
 
-        navigate('/dashboard/empresa');
+        // navigate('/dashboard/empresa');
+        navigate('/dashboard/entregador');
         // const form = evento.currentTarget;
         // const formData = new FormData();
         // const data: any = {};
