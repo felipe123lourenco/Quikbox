@@ -75,7 +75,7 @@ const AdministracaoEntregas = () => {
                         </TableCell>
                         <TableCell>
                             {entregas.peso}
-                        </TableCell> 
+                        </TableCell>
                         <TableCell>
                             {entregas.status}
                         </TableCell>
@@ -84,7 +84,7 @@ const AdministracaoEntregas = () => {
                         </TableCell>
                         <TableCell>
                             {entregas.codigo_coleta}
-                        </TableCell>                                            
+                        </TableCell>
                         <TableCell>
                             [ <RouterLink to={`/admin/entregas/${entregas.id}`}>editar</RouterLink> ]
                         </TableCell>
