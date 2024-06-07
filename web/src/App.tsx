@@ -11,6 +11,7 @@ import FormularioEntregas from './paginas/Administracao/Entregas/FormularioEntre
 import AdministracaoEntregas from './paginas/Administracao/Entregas/AdministracaoEntregas';
 import VitrineRestaurantes from './paginas/VitrineRestaurantes';
 import DashBoardEmpresa from './paginas/Dashboard/Empresa';
+import StatusDetalhe from './paginas/Dashboard/Empresa/StatusDetalhe';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <Route path="/admentregadores/:id" element={<AdministracaoEntregadores />} />      
       <Route path="/login" element={<Login />} />
       <Route path="/dashboard/empresa" element={<DashBoardEmpresa />} />
+      <Route path="/dashboard/empresa/:status" element={<StatusDetalhe />} />
       
       <Route path='/admin' element={<PaginaBaseAdmin />}>     
         <Route path="entregas/novo" element={<FormularioEntregas />} />        

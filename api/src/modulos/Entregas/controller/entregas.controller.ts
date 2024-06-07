@@ -1,7 +1,8 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Query } from '@nestjs/common';
 import { CriaEntregasDTO } from '../dto/CriaEntregas.dto';
 // import { AtualizaEntregasDTO } from '../dto/AtualizaEntregas.dto';
 import { EntregasService } from '../service/entregas.service';
+import { StatusEntrega } from 'src/recursos/enums/status-entrega.enum';
 
 // @UseGuards(AutenticacaoGuard)
 @Controller('entregas')
@@ -54,5 +55,10 @@ export class EntregasController {
   @Get('listar/entregas/entregador/:id')
   async obterEntregasPendentesEntregador(id: string) {
     return this.entregasService.obterEntregasPendentesEntregador(id);
+  }
+
+  @Get('/dashboard/empresa/listar/')
+  async obterEntregasStatus (@Query('status') status: string) {
+    return this.entregasService.obterEntregasStatus(status);      
   }
 }

@@ -1,27 +1,43 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import React from 'react';
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import NavBar from "../../../componentes/NavBar";
 import Rodape from "../../../componentes/Rodape";
 import axios from 'axios';
+import IStatusEntregaGrupo from "../../../interfaces/IStatusEntregaGrupo";
+import '../index.css';
 
 const DashBoardEmpresa = () => {
-    const [livros, setLivros] = useState<Livro[]>([]);
+    const [grupoEntregas, setGrupoEntregas] = useState<IStatusEntregaGrupo[]>([]);
+    
     useEffect(() => {
-        axios.get<Livro[]>('http://localhost:3000/livro')
+        axios.get<IStatusEntregaGrupo[]>('http://localhost:3000/entregas/listar/status')
         .then((response) => {
-            setLivros(response.data);
+            setGrupoEntregas(response.data);
         });
-    }, []) 
+    }, []);
 
     return ( 
-        <>
+        <div id="root">
             <NavBar />
+            <div className="main-content">
                 <h2>Dashboard</h2>
+                <div className="groupStatusContainer">
+                    {grupoEntregas?.map(item => (
+                        <Link key={item.status} to={"/dashboard/empresa/" + item.status}>
+                            <div className='groupStatusBlock'>
+                                <div className="groupStatusInner">
+                                    <div className='groupStatusNome'>{item.status}</div>
+                                    <div className='groupStatusCount'>{item.totstatus}</div>
+                                </div>
+                            </div>
+                        </Link>
+                    ))}
+                </div>
+            </div>
             <Rodape />    
-        </>  
-                
-    )
-}
+        </div>  
+    );
+};
 
-export default DashBoardEmpresa    
+export default DashBoardEmpresa;

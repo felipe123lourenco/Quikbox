@@ -112,7 +112,10 @@ export class EntregasService {
   }
 
   async obterEntregasGrupoStatus() {
-    const entregas = await this.entregasRepository.createQueryBuilder('e').select('e.status, count(entregas.status) as totstatus').groupBy('e.status').getRawMany();
+    const qb = this.entregasRepository.createQueryBuilder('e');
+    qb.select('e.status, count(e.status) as totstatus').groupBy('e.status');
+    const entregas = await qb.getRawMany();
+    // console.log(qb.getSql());
     return entregas.sort((e1, e2) => Object.keys(StatusEntrega).indexOf(e1.status) - Object.keys(StatusEntrega).indexOf(e2.status));
   }
 
@@ -122,6 +125,10 @@ export class EntregasService {
     .select('e.id, e.latitude as late, e.longitude as longe, c.latitude as latc, c.longitude as longc')
     .where('e.status = :status').setParameter('status', StatusEntrega.PENDENTE).getRawMany();
     return entregas.map((e) => ({...e, distancia: getDistance(e.late, e.longe, e.latc, e.longc)}));
-    return entregas;
+  }
+
+  async obterEntregasStatus(status: string) {
+    return await this.entregasRepository.createQueryBuilder('e')
+    .where('e.status = :status').setParameter('status', status).getMany();
   }
 }

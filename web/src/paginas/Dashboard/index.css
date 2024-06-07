@@ -1,0 +1,55 @@
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+  
+.main-content {
+    flex: 1;
+    padding: 20px;
+}
+  
+.groupStatusContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+  
+.groupStatusBlock {
+    display: inline-block;
+    margin: 8px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+}
+  
+.groupStatusInner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+.groupStatusNome {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+  
+.groupStatusCount {
+    font-size: 1em;
+    color: gray;
+}
+
+.social-icons {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+  
+    li {
+      display: inline;
+      margin: 0 10px;
+  
+      i {
+        font-size: 1.5em;
+      }
+    }
+}
