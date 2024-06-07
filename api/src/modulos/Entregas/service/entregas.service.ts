@@ -131,4 +131,22 @@ export class EntregasService {
     return await this.entregasRepository.createQueryBuilder('e')
     .where('e.status = :status').setParameter('status', status).getMany();
   }
+
+  async atualizaStatusEntrega(id: string, status: StatusEntrega, codigoConfirmacao: string) {
+    const entrega = await this.buscarPorId(id);
+    
+    if (status === StatusEntrega.ENTREGUE) {
+      if (entrega.codigoConfirmacao === codigoConfirmacao){
+        entrega.status = status; 
+       } else {
+        throw new Error('Código de confirmação inválido');
+       } 
+    }else{
+      entrega.status = status; 
+    }
+     
+     return await this.atualizaEntregas(entrega.id, entrega);
+
+  }
+
 }
