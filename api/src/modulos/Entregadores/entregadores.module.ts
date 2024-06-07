@@ -20,6 +20,6 @@ import { EntregadoresEntity } from './entity/entregadores.entity';
     emailNotExistente,
     ValidarEntregadoresService,
   ],
-  exports: [ValidarEntregadoresService],
+  exports: [ValidarEntregadoresService, ListarEntregadoresService],
 })
 export class EntregadoresModule {}

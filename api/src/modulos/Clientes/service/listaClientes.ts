@@ -15,4 +15,9 @@ export class ListarClienteService {
   async listarCliente(): Promise<ClienteEntity[]> {
     return await this.clienteRepositorio.listarTodos();
   } 
+
+ async listarClienteEmail(email: string): Promise<ClienteEntity | null> {
+    return await this.clienteRepositorio.listarClienteEmail(email);
+  }
 }
+

@@ -19,8 +19,9 @@ import { ClienteEntity } from './entity/cliente.entity';
     CriarClienteService,
     ClienteRepositorio,
     emailNotExistente,
-    ValidarClienteService, CustomLogger
+    ValidarClienteService, 
+    CustomLogger,
   ],
-  exports: [ValidarClienteService],
+  exports: [ValidarClienteService, ListarClienteService],
 })
 export class ClienteModule {}

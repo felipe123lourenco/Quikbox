@@ -13,6 +13,7 @@ import { CriarEntregadoresService } from '../service/criarEntregadoresService';
 import { AtualizaEntregadoresDTO, CriaEntregadoresDTO } from '../dto/Entregadores';
 import { ListarEntregadoresService } from '../service/listaEntregadores';
 import { AutenticacaoGuard } from '../../Autenticacao/autenticacao.guard';
+import { HashSenhaPipe } from 'src/recursos/pipes/hash-senha.pipe';
 
 // @UseGuards(AutenticacaoGuard)
 @Controller('entregadores')
@@ -23,8 +24,8 @@ export class EntregadoresController {
   ) {}
 
   @Post('criar')
-  async criaEntregadores(@Body() data: CriaEntregadoresDTO) {
-    return await this.criarEntregadoresService.cadastraEntregadores(data);
+  async criaEntregadores(@Body()  {senha, ...data}: CriaEntregadoresDTO,@Body('senha', HashSenhaPipe)senhaHasheada: string) {
+      return await this.criarEntregadoresService.cadastraEntregadores({...data, senha: senhaHasheada});
   }
 
   @Get('listar')

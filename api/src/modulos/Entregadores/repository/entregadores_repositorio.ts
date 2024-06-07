@@ -76,4 +76,10 @@ export class EntregadoresRepositorio {
 
     return nomeLocalizado.id;
   }
+
+  async listarEntregadoresEmail(email: string) {
+    return await this.entregadoresRepository.findOne({
+      where: { email },
+    });
+  }
 }

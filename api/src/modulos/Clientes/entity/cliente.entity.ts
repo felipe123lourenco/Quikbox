@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import {
   Column,
   CreateDateColumn,
@@ -28,7 +29,8 @@ export class ClienteEntity {
 
   @Column({ name: 'email', length: 150, nullable: false })
   email: string;
-
+  
+  @Exclude()
   @Column({ name: 'senha', length: 150, nullable: false })
   senha: string;
 }

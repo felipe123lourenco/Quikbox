@@ -15,4 +15,8 @@ export class ListarEntregadoresService {
   async listarEntregadores(): Promise<EntregadoresEntity[]> {
     return await this.entregadoreseRepositorio.listarTodos();
   } 
+
+  async listarEntregadoresEmail(email: string): Promise<EntregadoresEntity | null> {
+    return await this.entregadoreseRepositorio.listarEntregadoresEmail(email);
+  } 
 }

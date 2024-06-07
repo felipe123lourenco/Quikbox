@@ -13,6 +13,7 @@ import { CriarClienteService } from '../service/criarClienteService';
 import { AtualizaClienteDTO, CriaClienteDTO } from '../dto/Cliente';
 import { ListarClienteService } from '../service/listaClientes';
 import { AutenticacaoGuard } from '../../Autenticacao/autenticacao.guard';
+import { HashSenhaPipe } from 'src/recursos/pipes/hash-senha.pipe';
 
 //@UseGuards(AutenticacaoGuard)
 @Controller('clientes')
@@ -23,8 +24,8 @@ export class ClienteController {
   ) { }
 
   @Post('criar')
-  async criaCliente(@Body() data: CriaClienteDTO) {
-    return await this.criarClienteService.cadastraCliente(data);
+  async criaCliente(@Body() {senha, ...data}: CriaClienteDTO,@Body('senha', HashSenhaPipe)senhaHasheada: string,) {
+    return await this.criarClienteService.cadastraCliente({...data, senha: senhaHasheada});
   }
 
   @Get('listar')

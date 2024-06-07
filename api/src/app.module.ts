@@ -32,12 +32,12 @@ import { UsuarioModule } from './modulos/usuario/usuario.module';
       useClass: PostgresConfigService,
       inject: [PostgresConfigService],
     }),
-    CacheModule.registerAsync({
-      useFactory: async () => ({
-        store: await redisStore({ ttl: 10 * 1000 }),
-      }),
-      isGlobal: true,
-    }),
+    // // CacheModule.registerAsync({
+    // //   useFactory: async () => ({
+    // //     store: await redisStore({ ttl: 10 * 1000 }),
+    // //   }),
+    //   isGlobal: true,
+    // }),
     AutenticacaoModule,
     CustomLoggerModule,
     UsuarioModule,

@@ -76,4 +76,10 @@ export class ClienteRepositorio {
 
     return nomeLocalizado.id;
   }
+
+  async listarClienteEmail(email: string) {
+    return await this.clienteRepository.findOne({
+      where: { email },
+    });
+  }
 }
